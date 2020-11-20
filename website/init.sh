@@ -8,6 +8,7 @@ start()
     cp -r template "$PROJECT"
     sed -i -e "s/template/$PROJECT/g" $PROJECT/docker-compose.yml
     sed -i -e "s/hostname/$ADDRESS/g" $PROJECT/docker-compose.yml
+    sed -i -e "s/hostname/$ADDRESS/g" $PROJECT/conf/vhost.conf
     cd $PROJECT
 }
 
