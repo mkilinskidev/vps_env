@@ -38,6 +38,7 @@ services:
       - VIRTUAL_HOST=hostname
       - VIRTUAL_PROTO=https
       - VIRTUAL_PORT=443
+      - LETSENCRYPT_HOST=hostname
 volumes:
     template_data: {}
     template_db: {}
