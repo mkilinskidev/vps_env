@@ -8,15 +8,15 @@ services:
     volumes: 
       - template_db:/var/lib/mysql
     environment: 
-      MYSQL_ROOT_PASSWORD : abc123
+      - MYSQL_ROOT_PASSWORD=abc123
   
   template_pma:
     image: phpmyadmin
     container_name: template_pma
     network_mode: bridge
     environment: 
-      UPLOAD_LIMIT: 64M
-      PMA_ABSOLUTE_URI: https://hostname/phpmyadmin/
+      - UPLOAD_LIMIT=64M
+      - PMA_ABSOLUTE_URI=https://hostname/phpmyadmin/
     links: 
       - "template_db:db"
     depends_on: 
