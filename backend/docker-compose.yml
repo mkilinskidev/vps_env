@@ -1,0 +1,28 @@
+version: "3"
+services:
+  portainer: 
+    image: portainer/portainer-ce
+    container_name: portainer
+    network_mode: bridge
+    restart: always
+    ports: 
+      - "8000:8000"
+      - "9000:9000"
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+  proxy:
+    image: jwilder/nginx-proxy
+    container_name: proxy
+    network_mode: bridge
+    restart: always
+    volumes: 
+      - /srv/proxy/ssl:/etc/nginx/certs
+      - /var/run/docker.sock:/tmp/docker.sock:ro 
+    ports: 
+      - "80:80"
+      - "443:443"
+  
+volumes:
+    portainer_data: {}
