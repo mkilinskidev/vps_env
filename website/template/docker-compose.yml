@@ -16,7 +16,7 @@ services:
     network_mode: bridge
     environment: 
       - UPLOAD_LIMIT=64M
-      - PMA_ABSOLUTE_URI=https://hostname/phpmyadmin/
+      - PMA_ABSOLUTE_URI=https://hostname/pma/
     links: 
       - "template_db:db"
     depends_on: 
