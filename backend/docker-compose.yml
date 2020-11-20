@@ -19,7 +19,7 @@ services:
     restart: always
     volumes: 
       - /srv/proxy/ssl:/etc/nginx/certs
-      - /srv/vhost:/etc/nginx/vhost.d
+      - /srv/proxy/vhost:/etc/nginx/vhost.d
       - /usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro 
     ports: 
