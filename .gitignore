@@ -1,7 +1,13 @@
 .DS_Store
+
 /website/*
 !/website/template
 !/website/init.sh
-/proxy/ssl/*
-!/proxy/ssl/readme.md
 
+/proxy/ssl/*
+/proxy/vhost/*
+!/proxy/ssl/readme.md
+!/proxy/vhost/readme.md
+
+/backend/fail2ban/data/*
+!/backend/fail2ban/data/jail.local
