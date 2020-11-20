@@ -25,6 +25,12 @@ services:
     ports: 
       - "80:80"
       - "443:443"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "10"
+
   fail2ban:
     image: crazymax/fail2ban:latest
     container_name: fail2ban
