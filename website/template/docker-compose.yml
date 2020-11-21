@@ -28,6 +28,7 @@ services:
     network_mode: bridge
     volumes: 
       - template_data:/srv
+      - /srv/proxy/ssl:/srv/ssl:ro
     depends_on: 
       - template_pma
       - template_db
