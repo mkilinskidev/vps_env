@@ -3,7 +3,8 @@ services:
   template_db: 
     image: mysql:latest
     container_name: template_db
-    network_mode: bridge
+    networks: 
+      - network
     restart: always
     volumes: 
       - template_db:/var/lib/mysql
@@ -13,7 +14,8 @@ services:
   template_pma:
     image: phpmyadmin
     container_name: template_pma
-    network_mode: bridge
+    networks: 
+      - network
     environment: 
       - UPLOAD_LIMIT=64M
       - PMA_ABSOLUTE_URI=https://hostname/pma/
@@ -25,7 +27,8 @@ services:
   template_web:
     build: .
     container_name: template_web
-    network_mode: bridge
+    networks: 
+      - network
     volumes: 
       - template_data:/srv
     depends_on: 
@@ -42,3 +45,7 @@ services:
 volumes:
     template_data: {}
     template_db: {}
+
+networks: 
+  network:
+    driver: bridge
