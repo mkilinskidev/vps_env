@@ -8,6 +8,3 @@
 /proxy/vhost/*
 !/proxy/ssl/readme.md
 !/proxy/vhost/readme.md
-
-/backend/fail2ban/data/*
-!/backend/fail2ban/data/jail.local
