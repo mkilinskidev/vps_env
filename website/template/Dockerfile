@@ -8,7 +8,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt -y upgrade
 
 # Install nginx, php-fpm and supervisord from ubuntu repository
-RUN apt install -y nginx php-fpm php-redis php-mysqli supervisor vim certbot iputils-ping && \
+RUN apt install -y nginx php-fpm php-redis php-mysqli php-intl supervisor vim certbot iputils-ping && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
     
@@ -28,7 +28,8 @@ COPY html/ /srv/html/
 RUN sed -i -e 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' ${php_conf} && \
     echo "\ndaemon off;" >> ${nginx_conf}
 
-RUN sed -i -e 's/include \/etc\/nginx\/sites-enabled\/*/include \/srv\/conf\/*/g' ${nginx_conf}
+RUN sed -i -e 's/include \/etc\/nginx\/sites-enabled\/*/include \/srv\/conf\/*/g' ${nginx_conf} && \
+    sed -i -e "s/octet-stream;/octet-stream;\n\tlog_format main '\$http_x_forwarded_for - \$remote_user [\$time_local] \"\$request\" \$status \$body_bytes_sent \"\$http_referer\" \"\$http_user_agent\"';/g" ${nginx_conf}
     
 # Copy supervisor configuration
 COPY supervisord.conf ${supervisor_conf}

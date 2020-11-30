@@ -25,10 +25,16 @@ services:
     ports: 
       - "80:80"
       - "443:443"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "10"
 
   leresolver:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: leresolver
+    network_mode: bridge
     volumes_from: 
       - proxy
     volumes: 

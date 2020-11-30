@@ -1,0 +1,15 @@
+[sshd]
+enabled = true
+port = 22
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 2
+
+[nginx-proxy]
+enabled = true
+port = http,https
+filter = nginx-proxy-main
+logpath = /var/lib/docker/containers/*/*.log
+maxretry = 3
+findtime = 300
+bantime = 86400
