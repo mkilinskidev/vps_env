@@ -8,7 +8,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt -y upgrade
 
 # Install nginx, php-fpm and supervisord from ubuntu repository
-RUN apt install -y nginx php-fpm php-redis php-mysqli supervisor vim certbot iputils-ping && \
+RUN apt install -y nginx php-fpm php-redis php-mysqli php-intl supervisor vim certbot iputils-ping && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
     
