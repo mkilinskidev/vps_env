@@ -5,11 +5,13 @@ services:
     container_name: portainer
     network_mode: bridge
     restart: always
+    command: --ssl --sslcert /certs/srv01.mkilinski.dev.crt --sslkey /certs/srv01.mkilinski.dev.key
     ports: 
       - "8000:8000"
       - "9000:9000"
     volumes: 
       - /var/run/docker.sock:/var/run/docker.sock
+      - /srv/proxy/ssl:/certs
       - portainer_data:/data
 
   proxy:
